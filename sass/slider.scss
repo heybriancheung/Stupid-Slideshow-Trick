@@ -1,0 +1,65 @@
+@import "compass/reset";
+@import "compass/css3";
+@import "compass/css3/animation";
+
+@mixin doAnimation($name, $sec) {
+	@include animation-name($name);
+        @include animation-duration($sec);
+        @include animation-fill-mode(forwards);
+}
+
+@include keyframes(shiftOut) {
+	0% {
+		left: 0;
+	}
+	100% {
+		left: -50vw;
+	}
+}
+
+@include keyframes(shiftIn) {
+	0% {
+		left: 50vw;
+	}
+	100% {
+		left: 0vw;
+	}
+}
+
+html, body {
+	overflow-x: hidden;
+}
+
+.theSlider {
+	height: 50vh;
+	width: 50vw;
+	position: relative;
+	overflow: hidden;
+	div {
+		width: 50vw;
+		img {
+			width: 100%;
+		}
+	}
+	.onSlide, .offSlide {
+		position: absolute;
+		top: 0;
+		img {
+			width: 100%;
+		}
+	}
+	.onSlide {
+		left: 0;
+	}
+	.offSlide {
+		left: 50vw;
+	}	
+}
+
+.shiftOut {
+	@include doAnimation(shiftOut, 1s);
+}
+
+.shiftIn {
+	@include doAnimation(shiftIn, 1s);
+}
